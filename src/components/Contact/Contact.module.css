@@ -1,0 +1,54 @@
+.itemCnt {
+    border: 2px solid#bdbece;
+    border-radius: 10px;
+    min-width: 300px;
+    height: 100px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: flex-start;
+    gap: 9px;
+    font-weight: 700;
+    position: relative;
+    background-color: #1b1c2a;;
+}
+.itemCnt:hover {
+    background-color: #42d968;
+}
+.btnDelete {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background-color: #d22d2d;
+    color: #ffffff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+        transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btnDelete:hover,
+.btnDelete:focus {
+    background-color: #b21b1b;
+    transform: scale(1.05);
+}
+
+.btnDelete:active {
+    transform: scale(0.98);
+}
+.iconP {
+    color: #14a420;
+}
+.iconU {
+    color: #2514a4;
+    
+}
+.text{
+    display: flex;
+    gap: 5px;
+    color: #ffffff;
+}

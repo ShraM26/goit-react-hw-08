@@ -1,0 +1,25 @@
+.search {
+    border: 2px solid #1b1c2a;
+        transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+        background-color: transparent;
+        outline: transparent;
+        width: 100%;
+        padding: 8px;
+        border-radius: 8px;
+        letter-spacing: 0.04em;
+}
+
+.search:focus,
+.search:hover {
+    border-color: #14a420;
+        outline: none;
+}
+
+.text {
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+.search::placeholder {
+    font-style: italic;
+    font-size: 20px;
+}

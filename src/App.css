@@ -1,0 +1,41 @@
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+ul,
+ol {
+  list-style-type: none;
+  margin: 0;
+  padding-left: 0;
+}
+button {
+  border: none;
+  cursor: pointer;
+}
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+#root {
+  padding: 20px;
+  display: flex;
+  justify-content:space-evenly;
+}
+.addContact {
+ 
+  display: flex;
+  flex-direction: column;
+  margin-right: 300px;
+}
+.title {
+  margin-bottom: 10px;
+}
