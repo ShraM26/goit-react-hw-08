@@ -1,7 +1,7 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
-import { addContact } from '../../redux/contactsOps';
+import { addContact } from '../../redux/contacts/operations';
 import css from './ContactForm.module.css';
 
 const validationSchema = Yup.object({
@@ -40,10 +40,10 @@ const ContactForm = () => {
           </div>
           <div className={css.cntInp}>
             <label className={css.text} htmlFor="number">Number</label>
-            <Field className={css.input} type="text" id="number" name="number" placeholder="999-99-99" />
+            <Field className={css.input} type="tel" id="number" name="number" placeholder="+123456789" />
             <ErrorMessage className={css.error} name="number" component="span" />
           </div>
-          <button className={css.addBtn} type="submit">Add Contact</button>
+          <button type="submit" className={css.btnAdd}>Add contact</button>
         </Form>
       )}
     </Formik>
