@@ -1,74 +1,90 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { registerUser, loginUser, logoutUser, fetchCurrentUser } from './operations';
+import { registerUser, loginUser, logoutUser, refreshUser } from './auth/operations';
+
+
+const initialState = {
+  user: null,
+  token: null,
+  isLoggedIn: false, 
+  isRefreshing: false, 
+  loading: false,
+  error: null,
+};
 
 const authSlice = createSlice({
   name: 'auth',
-  initialState: {
-    user: null,
-    token: null,
-    loading: false,
-    error: null,
+  initialState,
+  reducers: {
+    
+    clearAuthState: (state) => {
+      state.user = null;
+      state.token = null;
+      state.isLoggedIn = false;
+      state.isRefreshing = false;
+      state.loading = false;
+      state.error = null;
+    },
   },
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder
-      .addCase(registerUser.pending, state => {
+      .addCase(registerUser.pending, (state) => {
         state.loading = true;
+      })
+      .addCase(registerUser.fulfilled, (state, { payload }) => {
+        state.user = payload.user;
+        state.token = payload.token;
+        state.isLoggedIn = true;
+        state.loading = false;
         state.error = null;
       })
-      .addCase(registerUser.fulfilled, (state, action) => {
+      .addCase(registerUser.rejected, (state, { payload }) => {
         state.loading = false;
-        state.user = action.payload.user;
-        state.token = action.payload.token;
+        state.error = payload;
       })
-      .addCase(registerUser.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      })
-      .addCase(loginUser.pending, state => {
+      .addCase(loginUser.pending, (state) => {
         state.loading = true;
+      })
+      .addCase(loginUser.fulfilled, (state, { payload }) => {
+        state.user = payload.user;
+        state.token = payload.token;
+        state.isLoggedIn = true;
+        state.loading = false;
         state.error = null;
       })
-      .addCase(loginUser.fulfilled, (state, action) => {
+      .addCase(loginUser.rejected, (state, { payload }) => {
         state.loading = false;
-        state.user = action.payload.user;
-        state.token = action.payload.token;
+        state.error = payload;
       })
-      .addCase(loginUser.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      })
-      .addCase(logoutUser.pending, state => {
+      .addCase(logoutUser.pending, (state) => {
         state.loading = true;
-        state.error = null;
       })
-      .addCase(logoutUser.fulfilled, state => {
-        state.loading = false;
+      .addCase(logoutUser.fulfilled, (state) => {
         state.user = null;
         state.token = null;
-      })
-      .addCase(logoutUser.rejected, (state, action) => {
+        state.isLoggedIn = false;
         state.loading = false;
-        state.error = action.payload;
-      })
-      .addCase(fetchCurrentUser.pending, state => {
-        state.loading = true;
         state.error = null;
       })
-      .addCase(fetchCurrentUser.fulfilled, (state, action) => {
+      .addCase(logoutUser.rejected, (state, { payload }) => {
         state.loading = false;
-        state.user = action.payload;
+        state.error = payload;
       })
-      .addCase(fetchCurrentUser.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
+      .addCase(refreshUser.pending, (state) => {
+        state.isRefreshing = true;
+      })
+      .addCase(refreshUser.fulfilled, (state, { payload }) => {
+        state.user = payload.user;
+        state.token = payload.token;
+        state.isLoggedIn = true;
+        state.isRefreshing = false;
+        state.error = null;
+      })
+      .addCase(refreshUser.rejected, (state, { payload }) => {
+        state.isRefreshing = false;
+        state.error = payload;
       });
   },
 });
 
-export const selectUser = state => state.auth.user;
-export const selectToken = state => state.auth.token;
-export const selectAuthLoading = state => state.auth.loading;
-export const selectAuthError = state => state.auth.error;
-export const selectIsLoggedIn = state => Boolean(state.auth.token); // Добавляем этот селектор
-
+export const { clearAuthState } = authSlice.actions;
 export default authSlice.reducer;

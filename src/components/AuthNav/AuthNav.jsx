@@ -1,15 +1,21 @@
-import { Link } from 'react-router-dom';
-import css from './AuthNav.module.css';
+import { NavLink } from 'react-router-dom';
+import styles from './AuthNav.module.css';
 
 const AuthNav = () => {
   return (
-    <nav className={css.nav}>
-      <Link to="/login" className={css.link}>
-        Login
-      </Link>
-      <Link to="/register" className={css.link}>
+    <nav className={styles.nav}>
+      <NavLink 
+        to="/register" 
+        className={({ isActive }) => (isActive ? styles.active : styles.link)}
+      >
         Register
-      </Link>
+      </NavLink>
+      <NavLink 
+        to="/login" 
+        className={({ isActive }) => (isActive ? styles.active : styles.link)}
+      >
+        Log In
+      </NavLink>
     </nav>
   );
 };
