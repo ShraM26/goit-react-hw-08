@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { Navigate, Outlet } from 'react-router-dom';
 import { selectLoggedIn, selectToken } from '../../redux/auth/selectors';
 
-export const PrivatRoute = () => {
+export const PublicRoute = () => {
   const isLoggedIn = useSelector(selectLoggedIn);
   const token = useSelector(selectToken);
 
@@ -10,10 +10,10 @@ export const PrivatRoute = () => {
     return <p>...loading</p>;
   }
 
-  if (!isLoggedIn && !token) {
-    return <Navigate to="/login" />;
+  if (isLoggedIn && token) {
+    return <Navigate to="/contacts" />;
   }
   return <Outlet />;
 };
 
-export default PrivatRoute;
+export default PublicRoute;

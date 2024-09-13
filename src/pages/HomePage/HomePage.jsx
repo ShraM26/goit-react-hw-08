@@ -1,12 +1,13 @@
-import { Link } from 'react-router-dom';
-import UserMenu from '../../components/UserMenu/UserMenu';
+import { NavLink } from "react-router-dom";
+import css from "./HomePage.module.css";
 
-const HomePage = () => {
+export const HomePage = () => {
   return (
-    <div>
-      <h1>Home Page</h1>
-      <UserMenu />
-      <Link to="/contacts">Go to Contacts</Link>
+    <div className={css.wrapper}>
+      <p>This is your Phonebook. </p>
+      <p>
+        Click here, to see your <NavLink to="/contacts">contacts</NavLink>
+      </p>
     </div>
   );
 };

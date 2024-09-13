@@ -1,0 +1,18 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+@media screen and (min-width: 768px) {
+    .wrapper {
+        flex-direction: row;
+    }
+}
+
+.contactsBox {
+    margin: auto;
+    width: 100%;
+    min-width: 370px;
+    max-width: 500px;
+}

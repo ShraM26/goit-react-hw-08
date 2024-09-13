@@ -1,48 +1,73 @@
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
-import { useDispatch } from 'react-redux';
-import { registerUser } from '../../redux/auth/operations';
-import css from './RegistrationForm.module.css';
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import { useId, useState } from "react";
+import css from "./RegistrationForm.module.css";
+import { ValidSchemaRegister } from "../helper";
+import { useDispatch } from "react-redux";
+import { register } from "../../redux/auth/operations";
 
-const validationSchema = Yup.object({
-  name: Yup.string().required('Required'),
-  email: Yup.string().email('Invalid email').required('Required'),
-  password: Yup.string().min(6, 'Too Short!').required('Required'),
-});
-
-const RegistrationForm = () => {
+export const RegisterForm = () => {
+  const [filledName, setFilledName] = useState(false);
+  const [filledEmail, setFilledEmail] = useState(false);
+  const [filledPass, setFilledPass] = useState(false);
   const dispatch = useDispatch();
 
-  const handleSubmit = (values, { resetForm }) => {
-    dispatch(registerUser(values));
-    resetForm();
+  const nameId = useId();
+  const emailId = useId();
+  const passwordId = useId();
+
+  const handleChange = (evt) => {
+    const target = evt.currentTarget;
+    target.name.value ? setFilledName(true) : setFilledName(false);
+    target.email.value ? setFilledEmail(true) : setFilledEmail(false);
+    target.password.value ? setFilledPass(true) : setFilledPass(false);
   };
 
+  const handleSubmit = (values, actions) => {
+    dispatch(register(values));
+    actions.resetForm();
+  };
   return (
     <Formik
-      initialValues={{ name: '', email: '', password: '' }}
-      validationSchema={validationSchema}
+      initialValues={{ name: "", email: "", password: "" }}
+      validationSchema={ValidSchemaRegister}
       onSubmit={handleSubmit}
     >
-      {() => (
-        <Form className={css.form}>
-          <label htmlFor="name">Name</label>
-          <Field type="text" id="name" name="name" placeholder="John Doe" />
-          <ErrorMessage name="name" component="div" />
-          
-          <label htmlFor="email">Email</label>
-          <Field type="email" id="email" name="email" placeholder="example@example.com" />
-          <ErrorMessage name="email" component="div" />
-          
-          <label htmlFor="password">Password</label>
-          <Field type="password" id="password" name="password" placeholder="******" />
-          <ErrorMessage name="password" component="div" />
-          
-          <button type="submit">Register</button>
-        </Form>
-      )}
+      <Form className={css.form} onChange={handleChange}>
+        <h2>Register, please</h2>
+        <div className={css.fieldWrapper}>
+          <label className={filledName ? css.inpFilled : ""} htmlFor={nameId}>
+            Name:
+          </label>
+          <Field name="name" id={nameId} />
+          <ErrorMessage className={css.error} name="name" component="span" />
+        </div>
+        <div className={css.fieldWrapper}>
+          <label className={filledEmail ? css.inpFilled : ""} htmlFor={emailId}>
+            Email:
+          </label>
+          <Field name="email" id={emailId} />
+          <ErrorMessage className={css.error} name="email" component="span" />
+        </div>
+        <div className={css.fieldWrapper}>
+          <label
+            className={filledPass ? css.inpFilled : ""}
+            htmlFor={passwordId}
+          >
+            Password:
+          </label>
+          <Field name="password" id={passwordId} type="password" />
+          <ErrorMessage
+            className={css.error}
+            name="password"
+            component="span"
+          />
+        </div>
+        <button className={css.btn} type="submit">
+          Register
+        </button>
+      </Form>
     </Formik>
   );
 };
 
-export default RegistrationForm;
+export default RegisterForm;

@@ -1,63 +1,68 @@
-.error {
-    color: red;
-    font-weight: 600;
-    
-}
-
-.text {
-    font-weight: 700;
-    margin-bottom: 5px;
-}
-
-.Form {
+.form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-}
-.cntInp {
-    display: flex;
-    flex-direction: column;
-    
-}
-.input {
-    border: 2px solid #1b1c2a;
-    transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-    background-color: transparent;
-    outline: transparent;
+    align-items: center;
+    justify-content: center;
     width: 100%;
+    min-width: 370px;
+    max-width: 500px;
+    height: 350px;
+    margin: auto;
+    margin-top: 50px;
     padding: 8px;
-    border-radius: 8px;
-    letter-spacing: 0.04em;
-
+    gap: 18px;
+    border-radius: 18px;
+    box-shadow: 0 11px 34px 0 rgba(0, 0, 0, 0.2);
 }
 
-.input:focus {
-    border-color: #14a420;
-    outline: none;
+.form input {
+    color: black;
+    background: inherit;
+    width: 100%;
+    max-width: 450px;
+    height: 50px;
+    border-radius: 12px;
+    border: 1px solid #838282;
+    padding: 5px;
+    text-align: center;
+    transition: all 250ms ease;
 }
 
-.addBtn {
-    color: #ffffff;
-    background-color: #1b1c2a;
-    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-        transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-    font-weight: 500;
-    line-height: 1.5;
-    letter-spacing: 0.04em;
-    border: none;
-    display: block;
-    width: 120px;
-    padding: 8px;
-    border-radius: 8px;
-    margin-bottom: 20px;
+.form input:hover,
+.form input:focus,
+.form input:active {
+    border: 2px solid #1825e0;
+    outline-style: none;
 }
 
-.addBtn:hover,
-.addBtn:focus {
-    background-color: #14a420;
-    transform: scale(1.05);
+.fieldWrapper {
+    position: relative;
+    width: 90%;
 }
 
-.addBtn:active {
-    transform: scale(0.98);
+label {
+    position: absolute;
+    top: 25%;
+    left: 15px;
+    transition: all 250ms ease;
+}
+
+.fieldWrapper:hover label {
+    background-color: white;
+    color: blue;
+    transform: translateY(-100%);
+}
+
+.inpFilled {
+    background-color: white;
+    color: blue;
+    transform: translateY(-100%);
+}
+
+.error {
+    position: absolute;
+    color: red;
+    background-color: white;
+    left: 50%;
+    transform: translate(-50%, 150%);
 }

@@ -1,9 +1,6 @@
-.nav {
+.list {
     display: flex;
-    gap: 10px;
-}
-
-.nav a {
-    text-decoration: none;
-    color: #333;
+    gap: 18px;
+    list-style-type: none;
+    padding: 0;
 }

@@ -1,14 +1,19 @@
-import { Outlet } from 'react-router-dom';
-import AppBar from '../AppBar/AppBar';
+import { useSelector } from "react-redux";
+import AppBar from "../AppBar/AppBar";
+import Loader from "../Loader/Loader";
+import Message from "../Message/Message";
+import { selectIsLoading } from "../../redux/contacts/selectors";
 
-const Layout = () => {
+export const Layout = ({ children }) => {
+  const isLoading = useSelector(selectIsLoading);
+
   return (
-    <div>
+    <>
+      {isLoading && <Loader />}
       <AppBar />
-      <main>
-        <Outlet />
-      </main>
-    </div>
+      <Message />
+      {children}
+    </>
   );
 };
 

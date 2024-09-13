@@ -1,17 +1,61 @@
-import { useDispatch } from 'react-redux';
-import { deleteContact } from '../../redux/contacts/operations';
-import css from './Contact.module.css';
-import { FiUser, FiPhone } from "react-icons/fi";
+import css from "./Contact.module.css";
+import { FaUser, FaPhoneAlt } from "react-icons/fa";
 
-const Contact = ({ name, number, id }) => {
-  const dispatch = useDispatch();
+import { useState } from "react";
+import DeleteModal from "../DeleteModal/DeleteModal";
+import EditModal from "../EditModal/EditModal";
+import { GrEdit } from "react-icons/gr";
+import { FaRegTrashCan } from "react-icons/fa6";
+
+export const Contact = ({ element: { id, name, phoneNumber } }) => {
+  const [openDelete, setOpenDelete] = useState(false);
+  const [openEdit, setOpenEdit] = useState(false);
+
+  const handleDelete = () => {
+    setOpenDelete(true);
+  };
+
+  const handleEdit = () => {
+    setOpenEdit(true);
+  };
 
   return (
-    <li className={css.itemCnt}>
-      <p className={css.text}><FiUser className={css.iconP} /> {name}</p>
-      <p className={css.text}><FiPhone className={css.iconU} /> {number}</p>
-      <button className={css.btnDelete} onClick={() => dispatch(deleteContact(id))}>Delete</button>
-    </li>
+    <>
+      <div className={css.item}>
+        <div>
+          <p>
+            <FaUser /> {name}
+          </p>
+          <p>
+            <FaPhoneAlt /> {phoneNumber}
+          </p>
+        </div>
+        <div className={css.btnWrapper}>
+          <button type="button" className={css.editButton} onClick={handleEdit}>
+            <GrEdit />
+          </button>
+          {openEdit && (
+            <EditModal
+              active={openEdit}
+              setActive={setOpenEdit}
+              id={id}
+              name={name}
+              number={phoneNumber}
+            />
+          )}
+          <button type="button" className={css.button} onClick={handleDelete}>
+            <FaRegTrashCan />
+          </button>
+          {openDelete && (
+            <DeleteModal
+              active={openDelete}
+              setActive={setOpenDelete}
+              id={id}
+            />
+          )}
+        </div>
+      </div>
+    </>
   );
 };
 
