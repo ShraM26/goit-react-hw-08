@@ -1,20 +1,36 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { Provider } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react';
-import store, { persistor } from './redux/store'; // Импортируйте store как default
-import App from './App';
-import './index.css';
+import ReactDOM from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <App />
-      </PersistGate>
-    </Provider>
-  </React.StrictMode>
+import App from "./App";
+import { UserContextProvider } from "./context/UserContext";
+
+import { persistor, store } from "./redux/store";
+
+import "./index.css";
+import { Toaster } from "react-hot-toast";
+
+/*
+Маршрутизація:
+
+1. Навчитися змінювати URL адресу браузера. 
+   Для цього можна використовувати компоненти <Link to="/about"> | <NavLink> 
+2. Підготувати для відображення компоненти(сторінки), які будуть 
+   рендеритися, коли їх шлях(pathname) співпаде з URL адресої. <Routes> & <Route path="/about" element={<AboutPage />}>
+
+*/
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <BrowserRouter>
+    <UserContextProvider>
+      <Provider store={store}>
+        <PersistGate persistor={persistor}>
+          <App />
+          <Toaster />
+        </PersistGate>
+      </Provider>
+    </UserContextProvider>
+  </BrowserRouter>
 );
-
-
 
