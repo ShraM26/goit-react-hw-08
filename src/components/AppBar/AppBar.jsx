@@ -1,26 +1,15 @@
-const Bar = ({ beer, wine, whiskey, total, onBarSupplyAdd }) => {
-  return (
-    <div>
-      <ul>
-        <li>Beer: {beer}</li>
-        <li>Wine: {wine}</li>
-        <li>Whiskey: {whiskey}</li>
-        <li>
-          <b>Total</b>: {total}
-        </li>
-      </ul>
+import { Navigation } from '../Navigation/Navigation';
+import { AuthNav } from '../AuthNav/AuthNav';
+import { UserMenu } from '../UserMenu/UserMenu';
+import { useSelector } from 'react-redux';
+import { selectIsLoggedIn } from '../../redux/auth/selectors';
 
-      <button type="button" onClick={() => onBarSupplyAdd("beer")}>
-        Add beer
-      </button>
-      <button type="button" onClick={() => onBarSupplyAdd("wine")}>
-        Add wine
-      </button>
-      <button type="button" onClick={() => onBarSupplyAdd("whiskey")}>
-        Add whiskey
-      </button>
-    </div>
+export const AppBar = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  return (
+    <header>
+      <Navigation />
+      {isLoggedIn ? <UserMenu /> : <AuthNav />}
+    </header>
   );
 };
-
-export default Bar;
