@@ -1,18 +1,12 @@
-import { useDispatch } from "react-redux";
-import RegisterForm from "../../components/RegistrationForm/RegistrationForm";
-import { register } from "../../redux/auth/operations";
 
-export const RegisterPage = () => {
-  const dispatch = useDispatch();
+import RegistrationForm from '../../components/RegistrationForm/RegistrationForm';
+import styles from './RegistrationPage.module.css';
 
-  const reg = (userRegData) => {
-    dispatch(register(userRegData));
-  };
-  return (
-    <div>
-      <RegisterForm submit={reg} />
-    </div>
-  );
-};
+const RegistrationPage = () => (
+  <div className={styles.container}>
+    <h1>Register</h1>
+    <RegistrationForm />
+  </div>
+);
 
-export default RegisterPage;
+export default RegistrationPage;

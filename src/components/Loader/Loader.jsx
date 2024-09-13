@@ -1,12 +1,8 @@
-import { SyncLoader } from "react-spinners";
-import css from "./Loader.module.css";
 
-export const Loader = () => {
-  return (
-    <>
-      <SyncLoader className={css.loader} color="#1734f6" />;
-    </>
-  );
+import styles from './Loader.module.css'; // Подключите стили, если они есть
+
+const Loader = () => {
+  return <div className={styles.loader}>Loading...</div>;
 };
 
 export default Loader;

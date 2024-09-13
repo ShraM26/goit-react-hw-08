@@ -1,5 +1,9 @@
-.wrapper {
-    display: flex;
-    gap: 8px;
-    align-items: center;
+.link {
+    color: #fff;
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline;
 }

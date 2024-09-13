@@ -1,25 +1,13 @@
-import { nanoid } from "nanoid";
-import { Contact } from "../Contact/Contact";
-import { useSelector } from "react-redux";
-import { selectFilteredContacts } from "../../redux/filters/selectors.js";
-import css from "./ContactList.module.css";
 
-export const ContactList = () => {
-  const filteredContacts = useSelector(selectFilteredContacts);
+import Contact from '../Contact/Contact';
+import styles from './ContactList.module.css';
 
-  return (
-    <ul className={css.list}>
-      {filteredContacts
-        ? filteredContacts.map((el) => {
-            return (
-              <li key={nanoid()}>
-                <Contact element={el} />
-              </li>
-            );
-          })
-        : "no contacts"}
-    </ul>
-  );
-};
+const ContactList = ({ contacts, onDelete }) => (
+  <div className={styles.contactList}>
+    {contacts.map(contact => (
+      <Contact key={contact.id} contact={contact} onDelete={onDelete} />
+    ))}
+  </div>
+);
 
 export default ContactList;

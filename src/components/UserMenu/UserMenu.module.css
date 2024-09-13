@@ -1,5 +1,5 @@
-.wrapper {
+.userMenu {
     display: flex;
-    gap: 18px;
     align-items: center;
+    gap: 10px;
 }

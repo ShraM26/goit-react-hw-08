@@ -1,43 +1,7 @@
-.item {
+.contact {
     display: flex;
-    flex-direction: row;
-    align-items: center;
     justify-content: space-between;
-    min-width: 50px;
-    width: 98%;
-    height: auto;
-    margin: 5px;
-    padding: 10px 20px;
-    border-radius: 18px;
-    border: 1px solid rgb(222 208 208);
-    box-shadow: 0 11px 34px 0 rgba(0, 0, 0, 0.2);
-}
-
-p {
-    margin: 5px;
-}
-
-.btnWrapper {
-    display: flex;
-}
-
-.button {
-    background-color: rgb(42, 42, 43);
-    text-align: center;
-}
-
-.button:hover {
-    background-color: rgb(80, 81, 82);
-    scale: 1.03;
-}
-
-.editButton {
-    background-color: rgb(7, 74, 199);
-    border: 1px solid rgb(7, 74, 199);
-    text-align: center;
-    margin-right: 8px;
-}
-
-.editButton:hover {
-    background-color: rgb(9, 55, 141);
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 5px;
 }
