@@ -1,90 +1,41 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { clearContacts } from './slice'; // Импортируем правильно
-import axios from 'axios';
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { instance } from "../auth/operations";
 
-axios.defaults.baseURL = 'https://connections-api.goit.global';
+export const apiGetAllContacts = createAsyncThunk(
+  "contacts/getAll",
+  async (_, thunkApi) => {
+    try {
+      const { data } = await instance.get("contacts");
 
-const setAuthHeader = token => {
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-};
-
-const clearAuthHeader = () => {
-  axios.defaults.headers.common.Authorization = '';
-};
-
-export const registerUser = createAsyncThunk('auth/register', async (userData, thunkAPI) => {
-  try {
-    const response = await axios.post('/users/signup', userData);
-    setAuthHeader(response.data.token);
-    localStorage.setItem('token', response.data.token);
-    return response.data;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
   }
-});
+);
 
-export const loginUser = createAsyncThunk('auth/login', async (userData, thunkAPI) => {
-  try {
-    const response = await axios.post('/users/login', userData);
-    setAuthHeader(response.data.token);
-    localStorage.setItem('token', response.data.token);
-    return response.data;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+export const apiAddNewContact = createAsyncThunk(
+  "contacts/addNew",
+  async (contact, thunkApi) => {
+    try {
+      const { data } = await instance.post("contacts", contact);
+
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
   }
-});
+);
 
-export const logoutUser = createAsyncThunk('auth/logoutUser', async (_, { dispatch }) => {
-  dispatch(clearContacts()); // Очистка контактов
-  clearAuthHeader(); // Очистка заголовка авторизации
-  localStorage.removeItem('token'); // Удаление токена
-  return;
-});
+export const apiDeleteContact = createAsyncThunk(
+  "contacts/delete",
+  async (contactId, thunkApi) => {
+    try {
+      const { data } = await instance.delete(`/contacts/${contactId}`);
 
-export const fetchCurrentUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
-  const state = thunkAPI.getState();
-  const persistedToken = localStorage.getItem('token');
-
-  if (!persistedToken) {
-    return thunkAPI.rejectWithValue('No token found');
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
   }
-
-  setAuthHeader(persistedToken);
-
-  try {
-    const response = await axios.get('/users/current');
-    return response.data;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
-  }
-});
-
-// Fetch contacts
-export const fetchContacts = createAsyncThunk('contacts/fetchAll', async (_, thunkAPI) => {
-  try {
-    const response = await axios.get('/contacts');
-    return response.data;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
-  }
-});
-
-// Add contact
-export const addContact = createAsyncThunk('contacts/addContact', async (contact, thunkAPI) => {
-  try {
-    const response = await axios.post('/contacts', contact);
-    return response.data;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
-  }
-});
-
-// Delete contact
-export const deleteContact = createAsyncThunk('contacts/deleteContact', async (contactId, thunkAPI) => {
-  try {
-    await axios.delete(`/contacts/${contactId}`);
-    return contactId;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
-  }
-});
+);
