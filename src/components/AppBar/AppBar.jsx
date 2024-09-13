@@ -1,19 +1,26 @@
-import { useSelector } from 'react-redux';
-import { selectIsLoggedIn } from '../../redux/auth/slice'; // Убедитесь, что путь правильный
-import Navigation from '../Navigation/Navigation';
-import AuthNav from '../AuthNav/AuthNav';
-import UserMenu from '../UserMenu/UserMenu';
-import css from './AppBar.module.css';
-
-const AppBar = () => {
-  const isLoggedIn = useSelector(selectIsLoggedIn);
-
+const Bar = ({ beer, wine, whiskey, total, onBarSupplyAdd }) => {
   return (
-    <header className={css.header}>
-      <Navigation />
-      {isLoggedIn ? <UserMenu /> : <AuthNav />}
-    </header>
+    <div>
+      <ul>
+        <li>Beer: {beer}</li>
+        <li>Wine: {wine}</li>
+        <li>Whiskey: {whiskey}</li>
+        <li>
+          <b>Total</b>: {total}
+        </li>
+      </ul>
+
+      <button type="button" onClick={() => onBarSupplyAdd("beer")}>
+        Add beer
+      </button>
+      <button type="button" onClick={() => onBarSupplyAdd("wine")}>
+        Add wine
+      </button>
+      <button type="button" onClick={() => onBarSupplyAdd("whiskey")}>
+        Add whiskey
+      </button>
+    </div>
   );
 };
 
-export default AppBar;
+export default Bar;
