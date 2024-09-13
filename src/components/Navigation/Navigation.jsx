@@ -1,11 +1,11 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import css from './Navigation.module.css';
 
 const Navigation = () => {
   return (
-    <nav className={css.nav}>
-      <Link to="/">Home</Link>
-      <Link to="/contacts">Contacts</Link>
+    <nav>
+      <NavLink to="/" className={css.link}>Home</NavLink>
+      <NavLink to="/contacts" className={css.link}>Contacts</NavLink>
     </nav>
   );
 };
