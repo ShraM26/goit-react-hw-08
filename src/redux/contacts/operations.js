@@ -1,45 +1,41 @@
-import axios from 'axios';
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { instance } from "../auth/operations";
 
-// Базовый URL для API
-const API_URL = 'https://connections-api.goit.global';
+export const apiGetAllContacts = createAsyncThunk(
+  "contacts/getAll",
+  async (_, thunkApi) => {
+    try {
+      const { data } = await instance.get("contacts");
 
-// Операция для получения всех контактов
-export const fetchContacts = createAsyncThunk('contacts/fetchAll', async (_, thunkAPI) => {
-  try {
-    const { data } = await axios.get(`${API_URL}/contacts`);
-    return data;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
   }
-});
+);
 
-// Операция для добавления нового контакта
-export const addContact = createAsyncThunk('contacts/addContact', async (contact, thunkAPI) => {
-  try {
-    const { data } = await axios.post(`${API_URL}/contacts`, contact);
-    return data;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
-  }
-});
+export const apiAddNewContact = createAsyncThunk(
+  "contacts/addNew",
+  async (contact, thunkApi) => {
+    try {
+      const { data } = await instance.post("contacts", contact);
 
-// Операция для удаления контакта по id
-export const deleteContact = createAsyncThunk('contacts/deleteContact', async (id, thunkAPI) => {
-  try {
-    await axios.delete(`${API_URL}/contacts/${id}`);
-    return id;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
   }
-});
+);
 
-// Новая операция для поиска контактов
-export const searchContacts = createAsyncThunk('contacts/searchContacts', async (query, thunkAPI) => {
-  try {
-    const { data } = await axios.get(`${API_URL}/contacts`, { params: { search: query } });
-    return data;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+export const apiDeleteContact = createAsyncThunk(
+  "contacts/delete",
+  async (contactId, thunkApi) => {
+    try {
+      const { data } = await instance.delete(`/contacts/${contactId}`);
+
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
   }
-});
+);

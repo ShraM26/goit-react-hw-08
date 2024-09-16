@@ -9,4 +9,4 @@ const RegistrationPage = () => (
   </div>
 );
 
-export default RegistrationPage;
+export default RegistrationPage
