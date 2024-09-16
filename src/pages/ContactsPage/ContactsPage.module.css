@@ -1,3 +1,38 @@
 .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 20px;
+    background-color: #f5f5f5;
+    min-height: 100vh;
 }
+
+.header {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+    /* Тёмный цвет для заголовка */
+}
+
+.formWrapper {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.searchWrapper {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 20px;
+}
+
+.contactListWrapper {
+    width: 100%;
+    max-width: 600px;
+}
+
+

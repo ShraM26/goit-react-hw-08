@@ -1,19 +1,29 @@
-
+import { useState } from 'react';
 import styles from './SearchBox.module.css';
 
 const SearchBox = ({ onSearch }) => {
-  const handleChange = e => {
-    onSearch(e.target.value);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSearch(searchTerm);
   };
 
   return (
-    <div className={styles.searchBox}>
+    <form onSubmit={handleSubmit} className={styles.searchBox}>
       <input
         type="text"
+        value={searchTerm}
         onChange={handleChange}
         placeholder="Search contacts..."
+        className={styles.input}
       />
-    </div>
+      <button type="submit" className={styles.button}>Search</button>
+    </form>
   );
 };
 

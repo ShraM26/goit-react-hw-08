@@ -1,14 +1,13 @@
-
 import { Formik, Field, Form } from 'formik';
 import styles from './LoginForm.module.css';
 import { useDispatch } from 'react-redux';
-import { login } from '../../redux/auth/operations';
+import { apiLogin } from '../../redux/auth/operations';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (values, { resetForm }) => {
-    dispatch(login(values));
+    dispatch(apiLogin(values));
     resetForm();
   };
 
