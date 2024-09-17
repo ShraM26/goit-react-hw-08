@@ -42,8 +42,6 @@ const ContactsPage = () => {
       <h1 className={styles.header}>Contacts</h1>
       <div className={styles.formWrapper}>
         <ContactForm onAddContact={handleAddContact} />
-      </div>
-      <div className={styles.searchWrapper}>
         <SearchBox onSearch={handleSearch} />
       </div>
       <div className={styles.contactListWrapper}>

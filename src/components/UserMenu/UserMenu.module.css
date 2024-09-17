@@ -1,5 +1,38 @@
 .userMenu {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     gap: 10px;
+    justify-content: center;
+}
+
+
+.userName {
+    color: #fff;
+    font-size: 20px;
+    margin-right: 60px;
+}
+.btnLoqout {
+    color: #282626;
+        background-color: #ffffff;
+        transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+            transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+        font-weight: 500;
+        line-height: 1.5;
+        letter-spacing: 0.04em;
+        border: none;
+        display: block;
+        width: 120px;
+        padding: 8px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+}
+.btnLoqout:hover,
+.btnLoqout:focus {
+    color: #fff;
+    background-color:red;
+    transform: scale(1.05);
+}
+
+.btnLoqout:active {
+    transform: scale(0.98);
 }

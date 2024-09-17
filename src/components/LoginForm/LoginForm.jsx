@@ -31,15 +31,15 @@ const LoginForm = () => {
       <Form className={styles.form}>
         <label>
           Email
-          <Field type="email" name="email" />
+          <Field type="email" name="email" className={styles.input}/>
           <ErrorMessage name="email" component="div" className={styles.error} />
         </label>
         <label>
           Password
-          <Field type="password" name="password" />
+          <Field type="password" name="password" className={styles.input}/>
           <ErrorMessage name="password" component="div" className={styles.error} />
         </label>
-        <button type="submit">Login</button>
+        <button type="submit"className={styles.btnLogin}>Login</button>
       </Form>
     </Formik>
   );

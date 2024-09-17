@@ -3,26 +3,65 @@
     padding: 20px;
     border-radius: 8px;
     background-color: #f9f9f9;
-    max-width: 400px;
+    max-width: 500px;
     margin: 0 auto;
-}
-
-label {
-    display: flex;
-    flex-direction: column;
-}
-
-button {
-    margin-top: 10px;
-}
-.form {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
+label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+button {
+    margin-top: 10px;
+}
+
+
 .error {
     color: red;
-    font-size: 0.875rem;
+    font-size: 18px;
     margin-top: 0.25rem;
+}
+.btnRegister {
+    color: #ffffff;
+        background-color: #1b1c2a;
+        transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+        transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+        font-weight: 500;
+        line-height: 1.5;
+        letter-spacing: 0.04em;
+        border: none;
+        display: block;
+        width: 120px;
+        padding: 8px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+}
+.btnRegister:hover,
+.btnRegister:focus {
+    background-color: #0446ee;
+    transform: scale(1.05);
+}
+
+.btnRegister:active {
+    transform: scale(0.98);
+}
+.input {
+    border: 2px solid #1b1c2a;
+    transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: transparent;
+    outline: transparent;
+    padding: 10px;
+    border-radius: 8px;
+    letter-spacing: 0.04em;
+
+}
+
+.input:focus {
+    border-color: #0446ee;;
+    outline: none;
 }

@@ -55,7 +55,7 @@ const ContactForm = ({ onAddContact }) => {
             className={styles.submitBtn}
             type="submit"
           >
-            🛂 Add New Contact
+          Add New Contact
           </button>
         </Form>
       )}

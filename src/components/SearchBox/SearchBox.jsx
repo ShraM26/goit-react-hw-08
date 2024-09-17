@@ -1,29 +1,23 @@
-import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setFilterValue } from '../../redux/filters/slice'; // Импортируйте setFilterValue из слайса
 import styles from './SearchBox.module.css';
 
-const SearchBox = ({ onSearch }) => {
-  const [searchTerm, setSearchTerm] = useState('');
+const SearchBox = () => {
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
-    setSearchTerm(e.target.value);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSearch(searchTerm);
+    dispatch(setFilterValue(e.target.value)); // Обновляем значение фильтра
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles.searchBox}>
+    <div className={styles.searchBox}>
       <input
         type="text"
-        value={searchTerm}
         onChange={handleChange}
         placeholder="Search contacts..."
         className={styles.input}
       />
-      <button type="submit" className={styles.button}>Search</button>
-    </form>
+    </div>
   );
 };
 

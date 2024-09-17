@@ -12,7 +12,7 @@ const RegistrationForm = () => {
     resetForm();
   };
 
-  // Схема валідації за допомогою Yup
+  
   const validationSchema = Yup.object({
     name: Yup.string()
       .min(2, 'Ім’я повинно містити щонайменше 2 символи')
@@ -34,20 +34,20 @@ const RegistrationForm = () => {
       <Form className={styles.form}>
         <label>
           Name
-          <Field type="text" name="name" />
+          <Field type="text" name="name" className={styles.input}/>
           <ErrorMessage name="name" component="div" className={styles.error} />
         </label>
         <label>
           Email
-          <Field type="email" name="email" />
+          <Field type="email" name="email" className={styles.input}/>
           <ErrorMessage name="email" component="div" className={styles.error} />
         </label>
         <label>
           Password
-          <Field type="password" name="password" />
+          <Field type="password" name="password" className={styles.input}/>
           <ErrorMessage name="password" component="div" className={styles.error} />
         </label>
-        <button type="submit">Register</button>
+        <button type="submit" className={styles.btnRegister}>Register</button>
       </Form>
     </Formik>
   );

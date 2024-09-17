@@ -7,3 +7,19 @@
 .link:hover {
     text-decoration: underline;
 }
+.nav {
+    display: flex;
+    gap: 20px;
+}
+
+
+.navLink {
+    text-decoration: none;
+    color: #fff;
+}
+
+.activeLink {
+   
+    color: #ff0000;
+    font-size: 20px;
+}

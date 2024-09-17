@@ -50,7 +50,8 @@ const contactsSlice = createSlice({
       .addCase(apiDeleteContact.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
-      }),
+      })
+
 });
 
 export const contactsReducer = contactsSlice.reducer;

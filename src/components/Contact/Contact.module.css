@@ -5,7 +5,7 @@
     padding: 12px;
     border: 1px solid #ddd;
     border-radius: 8px;
-    background-color: #f9f9f9;
+    background-color: #1b1c2a;
     margin-bottom: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
@@ -14,28 +14,35 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    
 }
-
+.info{
+    text-align: center;
+}
 .contact:hover {
-    background-color: #e9ecef;
+    background-color: #42d968;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.contact p {
-    margin: 0;
-    font-size: 16px;
-    color: #333;
+.text {
+    display: flex;
+    gap: 5px;
+    color: #ffffff;
 }
 
 .deleteButton {
-    border: none;
-    padding: 6px 12px;
-    border-radius: 4px;
-    background-color: #dc3545;
-    color: white;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+   
+        bottom: 15px;
+        right: 15px;
+        background-color: #d22d2d;
+        color: #ffffff;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+            transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .deleteButton:hover {
@@ -45,4 +52,13 @@
 .deleteButton:focus {
     outline: none;
     box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.3);
+}
+
+.iconP {
+    color: #14a420;
+}
+
+.iconU {
+    color: #2514a4;
+
 }

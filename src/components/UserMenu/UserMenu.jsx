@@ -7,7 +7,6 @@ const UserMenu = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectAuthUser); 
 
- 
   if (!user) {
     return <div>Loading...</div>;
   }
@@ -15,7 +14,7 @@ const UserMenu = () => {
   return (
     <div className={styles.userMenu}>
       <p className={styles.userName}>Welcome, {user.name}</p> 
-      <button type="button" onClick={() => dispatch(apiLogout())}>
+      <button type="button" className={styles.btnLoqout} onClick={() => dispatch(apiLogout())}>
         Logout
       </button>
     </div>
