@@ -11,3 +11,42 @@
     display: flex;
     align-items: center;
 }
+.header {
+ 
+    padding: 10px;
+}
+
+nav {
+    display: flex;
+    gap: 20px;
+}
+
+.link {
+    text-decoration: none;
+    color: #333;
+}
+
+.active {
+    font-weight: bold;
+    color: #ff0000;
+ 
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+}
+
+.authSection {
+    display: flex;
+    align-items: center;
+}
+
+.currentPage {
+    color: #fff;
+    margin-left: auto;
+    font-weight: bold;
+}

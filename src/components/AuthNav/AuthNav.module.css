@@ -7,3 +7,6 @@
 .link:hover {
     text-decoration: underline;
 }
+nav {
+    margin-right: 25px;
+}
