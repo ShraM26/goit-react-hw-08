@@ -1,4 +1,5 @@
-import { Formik, Field, Form } from 'formik';
+import { Formik, Field, Form, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 import styles from './LoginForm.module.css';
 import { useDispatch } from 'react-redux';
 import { apiLogin } from '../../redux/auth/operations';
@@ -11,16 +12,32 @@ const LoginForm = () => {
     resetForm();
   };
 
+  
+  const validationSchema = Yup.object({
+    email: Yup.string()
+      .email('Неправильний формат електронної пошти')
+      .required('Електронна пошта обов’язкова'),
+    password: Yup.string()
+      .min(8, 'Пароль повинен містити щонайменше 8 символів')
+      .required('Пароль обов’язковий'),
+  });
+
   return (
-    <Formik initialValues={{ email: '', password: '' }} onSubmit={handleSubmit}>
+    <Formik
+      initialValues={{ email: '', password: '' }}
+      validationSchema={validationSchema}
+      onSubmit={handleSubmit}
+    >
       <Form className={styles.form}>
         <label>
           Email
-          <Field type="email" name="email" required />
+          <Field type="email" name="email" />
+          <ErrorMessage name="email" component="div" className={styles.error} />
         </label>
         <label>
           Password
-          <Field type="password" name="password" required />
+          <Field type="password" name="password" />
+          <ErrorMessage name="password" component="div" className={styles.error} />
         </label>
         <button type="submit">Login</button>
       </Form>
